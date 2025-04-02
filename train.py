@@ -11,3 +11,5 @@ nltk.download('punkt_tab')
 os.makedirs('models', exist_ok=True)\
 
 data = pd.read_csv("data/deceptive-opinion.csv")
+
+data['lable'] = data['deceptive'].map({'truthful': 0, 'deceptive': 1})
