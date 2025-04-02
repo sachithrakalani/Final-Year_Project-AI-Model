@@ -1,9 +1,11 @@
+import pandas as pd
+import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from sklearn.feature_extraction.text import TfidfVectorizer
 import os
-import pandas as pd
-import re
+
 
 nltk.download('stopwords')
 nltk.download('punkt')
@@ -28,3 +30,7 @@ def clean_text(text):
     return ' '.join(words)
 
 data['cleaned_review'] = data['text'].apply(clean_text)
+
+vectrorizer = TfidfVectorizer(max_features=5000)
+X = vectrorizer.fit_transform(data['cleaned_review']).toarray()
+y = data['lable']
