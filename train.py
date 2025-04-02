@@ -6,6 +6,7 @@ from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 import os
 
+from sklearn.model_selection import train_test_split
 
 nltk.download('stopwords')
 nltk.download('punkt')
@@ -34,3 +35,5 @@ data['cleaned_review'] = data['text'].apply(clean_text)
 vectrorizer = TfidfVectorizer(max_features=5000)
 X = vectrorizer.fit_transform(data['cleaned_review']).toarray()
 y = data['lable']
+
+X_train , X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
