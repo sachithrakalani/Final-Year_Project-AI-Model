@@ -49,3 +49,7 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f"Model Accuracy: {accuracy:.2f}")
 print("Classification Report: ")
 print(classification_report(y_test, y_pred, target_names=['Real', 'Fake']))
+
+joblib.dump(model, 'models/fake_review_model.pkl')
+joblib.dump(vectrorizer, 'models/tfidf_vectorizer.pkl')
+print("Model and Vectorizer exported to 'models/' directory!")
