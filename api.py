@@ -34,3 +34,13 @@ def predict_review(review):
     prediction = model.predict(vectrorized_review)
     return "Fake Review" if prediction[0] == 1 else "Real Review"
 
+@app .route('predict', methods=['POST'])
+def predict():
+    data =request.get_json()
+    if not data or 'review' not in data:
+        return jsonify({'error': 'No review provided'}), 400
+
+    review = data['review']
+    prediction = predict_review(review)
+    return jsonify({'review': review, 'prediction': prediction})
+
