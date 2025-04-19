@@ -39,8 +39,10 @@ def predict():
         return jsonify({'error': 'No review provided'}), 400
 
     review = data['review']
+    print("Review", review)
     prediction = predict_review(review)
+    print("PREDICTION",prediction)
     return jsonify({'review': review, 'prediction': prediction})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=3000)
+    app.run(debug=True, host='0.0.0.0', port=4000)
